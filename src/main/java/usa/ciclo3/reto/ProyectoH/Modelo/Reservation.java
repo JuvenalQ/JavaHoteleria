@@ -24,12 +24,12 @@ public class Reservation implements Serializable {
    * variable
    */
   private Integer idReservation;
-  @Temporal(TemporalType.TIMESTAMP)
+  //@Temporal(TemporalType.TIMESTAMP)
   /**
    * variable
    */
   private Date startDate;
-  @Temporal(TemporalType.TIMESTAMP)
+  //@Temporal(TemporalType.TIMESTAMP)
   /**
    * variable
    */
