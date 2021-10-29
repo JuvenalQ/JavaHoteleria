@@ -1,0 +1,1 @@
+http://129.151.117.48:8080/api/Category/all

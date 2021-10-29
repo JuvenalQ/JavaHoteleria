@@ -6,10 +6,12 @@ usa\ciclo3\reto\ProyectoH\Service\MessageService.class
 usa\ciclo3\reto\ProyectoH\Modelo\Room.class
 usa\ciclo3\reto\ProyectoH\Web\ScoreController.class
 usa\ciclo3\reto\ProyectoH\Web\ReservationController.class
+usa\ciclo3\reto\ProyectoH\Modelo\TopClient.class
 usa\ciclo3\reto\ProyectoH\Repository\Crud\RoomCrud.class
 usa\ciclo3\reto\ProyectoH\Repository\ReservationRepository.class
 usa\ciclo3\reto\ProyectoH\Repository\Crud\CategoryCrud.class
 usa\ciclo3\reto\ProyectoH\Modelo\Admin.class
+usa\ciclo3\reto\ProyectoH\Modelo\StatusReservas.class
 usa\ciclo3\reto\ProyectoH\Repository\Crud\MessageCrud.class
 usa\ciclo3\reto\ProyectoH\Modelo\Reservation.class
 usa\ciclo3\reto\ProyectoH\Repository\AdminRepository.class

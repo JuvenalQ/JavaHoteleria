@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import usa.ciclo3.reto.ProyectoH.Modelo.Reservation;
+import usa.ciclo3.reto.ProyectoH.Modelo.StatusReservas;
+import usa.ciclo3.reto.ProyectoH.Modelo.TopClient;
 import usa.ciclo3.reto.ProyectoH.Service.ReservationService;
 
 /**
@@ -61,5 +63,21 @@ public class ReservationController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public Boolean delRepository(@PathVariable Integer id) {
     return objReservationService.delRepository(id);
+  }
+
+  //reto5 
+  @GetMapping("/report-status")
+  public StatusReservas getReservationStatus() {
+    return objReservationService.getReservationStatus();
+  }
+
+  @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+  public List<Reservation> getReservasTiempo(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo) {
+    return objReservationService.ReservacionTimes(dateOne, dateTwo);
+  }
+
+  @GetMapping("/report-clients")
+  public List<TopClient> getClientes() {
+    return objReservationService.getTopClientRes();
   }
 }
