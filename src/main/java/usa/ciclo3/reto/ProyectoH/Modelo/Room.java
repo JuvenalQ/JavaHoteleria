@@ -13,33 +13,57 @@ import javax.persistence.*;
  *
  * @author Andy
  */
-//{"name":"425","stars":5,"category":{"id":1},"hotel":"DeCameron","description":"Habitación sencilla"
 @Entity
 @Table(name = "Room")
 public class Room implements Serializable {
+//{"name":"425","stars":5,"category":{"id":1},"hotel":"DeCameron","description":"Habitación sencilla"
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY) // genera las tablas 
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // genera las tablas
+  /**
+   * Variable
+   */
   private Integer id;
+  /**
+   * Variable
+   */
   private String name;
+  /**
+   * Variable
+   */
   private String hotel;
+  /**
+   * Variable
+   */
   private Integer stars;
+  /**
+   * Variable
+   */
   private String description;
 
   //relacion con la tabla categoria
   @ManyToOne
   @JoinColumn(name = "categoryId") //nombre de la llave foranea
   @JsonIgnoreProperties({"rooms", "category"})//
+  /**
+   * Variable
+   */
   private Category category;  //instancia de categoria y donde hace el mapeo para la relacion 
 
   //relacion  tabla mensajes
   @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
   @JsonIgnoreProperties({"room", "client"})//room
+  /**
+   * Variable
+   */
   public List< Message> messages;
 
   //relacion tabla reservacion 
   @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "room")
   @JsonIgnoreProperties({"room", "reservations"})
+  /**
+   * Variable
+   */
   public List<Reservation> reservations;
 
   public Integer getId() {
@@ -105,5 +129,5 @@ public class Room implements Serializable {
   public void setReservations(List<Reservation> reservations) {
     this.reservations = reservations;
   }
-
+//http://129.151.117.48:8080/
 }

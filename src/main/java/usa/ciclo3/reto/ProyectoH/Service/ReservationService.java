@@ -4,11 +4,17 @@
  */
 package usa.ciclo3.reto.ProyectoH.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import usa.ciclo3.reto.ProyectoH.Modelo.Reservation;
+import usa.ciclo3.reto.ProyectoH.Modelo.StatusReservas;
+import usa.ciclo3.reto.ProyectoH.Modelo.TopClient;
 import usa.ciclo3.reto.ProyectoH.Repository.ReservationRepository;
 
 /**
@@ -102,4 +108,42 @@ public class ReservationService {
     }).orElse(false);
     return objEliminar;
   }
+
+  //Reto 5
+  public StatusReservas getReservationStatus() {
+    List<Reservation> completed = objRepository.getReservationStatus("completed");
+    List<Reservation> cancelled = objRepository.getReservationStatus("cancelled");
+    return new StatusReservas(completed.size(), cancelled.size());
+  }
+
+  //
+  public List<Reservation> ReservacionTimes(String datoA, String datoB) {
+
+    //Formato de la fecha 
+    SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+
+    //variables de fechas 
+    Date datoUno = new Date();
+    Date datoDos = new Date();
+
+    try {
+
+      //Convierte los datos 
+      datoUno = parser.parse(datoA);
+      datoDos = parser.parse(datoB);
+
+    } catch (ParseException evt) {
+      evt.printStackTrace();
+    }
+    if (datoUno.before(datoDos)) {
+      return objRepository.ReservacionTimes(datoUno, datoDos);
+    } else {
+      return new ArrayList<>();
+    }
+  }
+
+  public List<TopClient> getTopClientRes() {
+    return objRepository.getTopClientRes();
+  }
+
 }
