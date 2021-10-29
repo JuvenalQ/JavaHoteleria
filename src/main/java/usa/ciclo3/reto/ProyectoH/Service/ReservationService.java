@@ -24,18 +24,37 @@ import usa.ciclo3.reto.ProyectoH.Repository.ReservationRepository;
 @Service
 public class ReservationService {
 
+  /**
+   * Instancia de repository
+   */
   @Autowired
   private ReservationRepository objRepository;
 
-  //
+  /**
+   * obtiene todos los datos de la tabla reservaciones
+   *
+   * @return List de clase Reservacion
+   */
   public List<Reservation> getRepositorys() {
     return (List<Reservation>) objRepository.getRepositorys();
   }
 
+  /**
+   * obtiene reservaciones por Id
+   *
+   * @param id
+   * @return Optional de clase Reservacion
+   */
   public Optional<Reservation> getIdRep(int id) {
     return objRepository.getIdRep(id);
   }
 
+  /**
+   * Guarda una reservacion en la tabla
+   *
+   * @param objR
+   * @return valor de clase Reservacion
+   */
   public Reservation saveRepository(Reservation objR) {
 
     if (objR.getIdReservation() == null) {
@@ -53,7 +72,12 @@ public class ReservationService {
     }
   }
 
-  //Reto 4 
+  /**
+   * actualiza un registro de la tabla Reservaciones
+   *
+   * @param objR
+   * @return valor de clase Reservacion
+   */
   public Reservation updateReservation(Reservation objR) {
     if (objR.getIdReservation() != null) { //Verifica si el id no está vacío
 
@@ -101,6 +125,12 @@ public class ReservationService {
     }
   }
 
+  /**
+   * Elimina un registro de la tabla Reservaciones por Id
+   *
+   * @param id
+   * @return boolean
+   */
   public Boolean delRepository(Integer id) {
     Boolean objEliminar = getIdRep(id).map(Reservation -> {
       objRepository.delRepository(Reservation);
@@ -109,14 +139,24 @@ public class ReservationService {
     return objEliminar;
   }
 
-  //Reto 5
+  /**
+   * devuelve el estado de las reservaciones
+   *
+   * @return StatusReservas
+   */
   public StatusReservas getReservationStatus() {
     List<Reservation> completed = objRepository.getReservationStatus("completed");
     List<Reservation> cancelled = objRepository.getReservationStatus("cancelled");
     return new StatusReservas(completed.size(), cancelled.size());
   }
 
-  //
+  /**
+   * Lista de periodo de reservaciones y el estado
+   *
+   * @param datoA
+   * @param datoB
+   * @return ListaReservaciones
+   */
   public List<Reservation> ReservacionTimes(String datoA, String datoB) {
 
     //Formato de la fecha 
@@ -142,6 +182,11 @@ public class ReservationService {
     }
   }
 
+  /**
+   * Obtiene los clientes con mayor reservacion
+   *
+   * @return listaClientes
+   */
   public List<TopClient> getTopClientRes() {
     return objRepository.getTopClientRes();
   }
